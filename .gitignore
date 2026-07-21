@@ -1,0 +1,15 @@
+# local archives of earlier versions
+_old-v1/
+_old-v2/
+
+# original unoptimized source images (optimized copies live in assets/)
+public/
+
+# vercel
+.vercel/
+
+# tooling / os
+.playwright-mcp/
+.DS_Store
+Thumbs.db
+node_modules/
