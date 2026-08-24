@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     result.textContent = 'Going down…';
     const picked = rewards[Math.floor(Math.random() * rewards.length)];
     const segment = rewards.indexOf(picked);
-    wheel.style.transform = `rotate(${1800 + (360 - segment * 60) + 30}deg)`;
+    wheel.style.transform = `rotate(${1800 + 60 - segment * 60}deg)`;
     window.setTimeout(() => {
       if (!picked.code) {
         result.textContent = 'Another shot. Spin once more.';

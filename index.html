@@ -275,7 +275,26 @@
   .cw-wheel-modal .cw-wheel:after{border-color:var(--cw-white)!important}
   #cw-news{background:var(--cw-white)!important}
   .cw-toast{background:var(--cw-navy)!important;color:var(--cw-white)!important}
+  /* Reference-inspired wheel: branded image left, large legible wheel right. */
+  .cw-wheel-modal .cw-reward{width:min(96vw,1200px);padding:0;overflow:hidden}
+  .cw-wheel-modal .cw-reward__inner{max-width:none;grid-template-columns:.82fr 1.18fr;gap:0;align-items:stretch}
+  .cw-wheel-visual{min-height:720px;background:var(--cw-navy);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+  .cw-wheel-visual img{width:100%;height:100%;object-fit:cover;object-position:center bottom;filter:grayscale(1) contrast(1.12);mix-blend-mode:screen}
+  .cw-wheel-offer{padding:42px clamp(30px,4vw,58px) 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .cw-wheel-offer .cw-kicker{margin:0 0 10px}
+  .cw-wheel-modal .cw-reward h2{font-size:clamp(40px,4.6vw,64px);line-height:.92;text-align:center;margin:0 0 22px}
+  .cw-wheel-modal .cw-reward h2 em{display:block;font-family:'Archivo',sans-serif;font-size:.68em;line-height:1.05;margin-top:9px}
+  .cw-wheel-modal .cw-wheel-wrap{width:min(100%,510px);margin:0 auto 22px}
+  .cw-wheel-modal .cw-wheel{border-width:12px!important;box-shadow:none}
+  .cw-wheel-modal .cw-wheel-pointer{left:auto;right:-7px;top:50%;transform:translateY(-50%);border:0;width:0;height:0;border-top:25px solid transparent;border-bottom:25px solid transparent;border-right:34px solid var(--cw-navy)}
+  .cw-wheel-modal .cw-wheel__label{position:absolute;z-index:2;left:50%;top:50%;right:auto;bottom:auto;width:45%;height:44px;margin-top:-22px;padding-right:7%;display:flex;align-items:center;justify-content:flex-end;transform:rotate(var(--angle));transform-origin:0 50%;font-family:'Archivo',sans-serif;font-size:clamp(14px,1.5vw,20px);font-weight:800;line-height:1;text-align:right;letter-spacing:0;text-transform:none;white-space:nowrap}
+  .cw-wheel-modal .cw-wheel__label:nth-child(odd){color:var(--cw-navy)}
+  .cw-wheel-modal .cw-wheel__label:nth-child(even){color:var(--cw-white)}
+  .cw-wheel-modal .cw-wheel__label--flip strong{transform:rotate(180deg)}
+  .cw-wheel-modal .cw-spin{width:min(100%,510px);font-size:15px;padding:17px 24px}
+  .cw-wheel-modal .cw-reward-result{width:min(100%,510px);min-height:24px;margin:14px 0 0;font-size:15px;line-height:1.4;text-align:center}
   @media(max-width:760px){.cw-wheel-modal{padding:10px}.cw-wheel-modal .cw-reward{max-height:calc(100svh - 20px);padding:64px 22px 28px}.cw-wheel-modal .cw-reward__inner{grid-template-columns:1fr}.cw-wheel-modal .cw-wheel-wrap{max-width:300px}.cw-wheel__label{width:78px;font-size:10px}.cw-wheel-close{top:10px;right:10px}}
+  @media(max-width:760px){.cw-wheel-modal .cw-reward{padding:0}.cw-wheel-modal .cw-reward__inner{display:block}.cw-wheel-visual{display:none}.cw-wheel-offer{padding:62px 18px 24px}.cw-wheel-modal .cw-reward h2{font-size:38px;margin-bottom:18px}.cw-wheel-modal .cw-wheel-wrap{width:min(100%,330px);max-width:none}.cw-wheel-modal .cw-wheel__label{width:44%;height:34px;margin-top:-17px;padding-right:4%;font-size:11px}.cw-wheel-modal .cw-wheel-pointer{border-top-width:18px;border-bottom-width:18px;border-right-width:25px}.cw-wheel-modal .cw-spin{font-size:13px}}
   @media(max-width:760px){.cw-gallery{grid-template-columns:1fr}.cw-gallery__rail{grid-template-columns:repeat(3,1fr)}.cw-reward__inner,.cw-impact,.cw-story__inner{grid-template-columns:1fr}.cw-wheel-wrap{max-width:360px}.cw-origin__image{width:min(100%,390px)!important}.cw-story{padding-left:20px;padding-right:20px}}
 </style>
 </head>
@@ -495,14 +514,23 @@
   <section id="reward" class="cw-reward">
     <button type="button" class="cw-wheel-close" id="cw-wheel-close" aria-label="Close reward wheel">×</button>
     <div class="cw-reward__inner">
-      <div class="cw-wheel-wrap" aria-hidden="true">
-        <div class="cw-wheel-pointer"></div>
-        <div class="cw-wheel" id="cw-wheel"><span class="cw-wheel__label">20% off</span><span class="cw-wheel__label">Free shipping</span><span class="cw-wheel__label">10% off</span><span class="cw-wheel__label">Early access</span><span class="cw-wheel__label">15% off</span><span class="cw-wheel__label">Another shot</span></div>
+      <div class="cw-wheel-visual" aria-hidden="true">
+        <img src="assets/origin-octopus-upscaled.png" alt="">
       </div>
-      <div>
-        <div class="cw-kicker" style="margin-bottom:18px">One turn per visitor</div>
-        <h2 id="cw-wheel-title">Take a turn.</h2>
-        <p>Spin for a first-drop reward: 20% off, 15% off, 10% off, free shipping, early access, or another shot. Rewards become usable when the Anchor Tee is released.</p>
+      <div class="cw-wheel-offer">
+        <div class="cw-kicker">One turn per visitor</div>
+        <h2 id="cw-wheel-title">Spin the wheel.<br><em>Take what it gives.</em></h2>
+        <div class="cw-wheel-wrap" aria-label="Reward wheel with six possible prizes">
+          <div class="cw-wheel-pointer"></div>
+          <div class="cw-wheel" id="cw-wheel">
+            <span class="cw-wheel__label" style="--angle:-60deg"><strong>20% off</strong></span>
+            <span class="cw-wheel__label" style="--angle:0deg"><strong>Free shipping</strong></span>
+            <span class="cw-wheel__label" style="--angle:60deg"><strong>10% off</strong></span>
+            <span class="cw-wheel__label cw-wheel__label--flip" style="--angle:120deg"><strong>Early access</strong></span>
+            <span class="cw-wheel__label cw-wheel__label--flip" style="--angle:180deg"><strong>15% off</strong></span>
+            <span class="cw-wheel__label cw-wheel__label--flip" style="--angle:240deg"><strong>Spin again</strong></span>
+          </div>
+        </div>
         <button type="button" class="cw-spin" id="cw-spin">Spin the wheel</button>
         <p class="cw-reward-result" id="cw-reward-result" role="status" aria-live="polite"></p>
       </div>
