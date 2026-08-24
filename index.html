@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coldwake — Leave a Clean Wake</title>
-<meta name="description" content="Coldwake. Heavyweight essentials drawn from the water line. The Anchor Tee — natural undyed cotton, built for the wake.">
+<title>Coldwake — Go Anyway</title>
+<meta name="description" content="The ocean doesn't care if you make it. Go anyway. Heavyweight cotton, small runs, and an anchor on the chest.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23030b21'/%3E%3Ctext x='12' y='17' font-family='Arial,sans-serif' font-weight='700' font-size='15' fill='%23f1ede4' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -180,6 +180,46 @@
   .cw-size{border-color:var(--cw-navy)!important;color:var(--cw-navy)!important}.cw-size:hover,.cw-size.is-sel{background:var(--cw-navy)!important;color:var(--cw-white)!important}
   .cw-fabric-img{background:var(--cw-navy)!important;border-color:var(--cw-navy)!important}
   footer,footer *{color:var(--cw-white)!important}
+  /* Coldwake story, product, impact, and reward additions. */
+  .cw-origin__image{width:min(100%,520px)!important;aspect-ratio:4/5!important;background:#000!important;border:0!important}
+  .cw-origin__image img{object-fit:cover!important;object-position:center bottom!important;filter:grayscale(1) contrast(1.08)!important}
+  .cw-origin__copy{align-items:start!important}
+  .cw-kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:700}
+  .cw-availability{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--cw-navy);padding:9px 12px;margin:0 0 20px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .cw-availability:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--cw-navy)}
+  .cw-gallery{display:grid;grid-template-columns:1fr 96px;gap:12px;align-items:start}
+  .cw-gallery__main{aspect-ratio:4/5;overflow:hidden;background:#e9e2d5}
+  .cw-gallery__main img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .cw-gallery__rail{display:grid;gap:10px}
+  .cw-thumb{aspect-ratio:1;border:1px solid rgba(3,26,56,.3);padding:0;background:#eee7da;overflow:hidden;cursor:pointer}
+  .cw-thumb img{width:100%;height:100%;object-fit:cover}
+  .cw-thumb.is-active{outline:2px solid var(--cw-navy);outline-offset:2px}
+  .cw-thumb--future{display:grid;place-items:center;border-style:dashed;color:var(--cw-navy);font-size:9px;line-height:1.35;text-align:center;text-transform:uppercase;letter-spacing:.1em;padding:8px;cursor:default}
+  .cw-unavailable,.cw-unavailable:hover{opacity:.5!important;cursor:not-allowed!important;transform:none!important}
+  .cw-reward{background:var(--cw-navy);color:var(--cw-white);padding:clamp(64px,9vw,120px) 32px}
+  .cw-reward__inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:minmax(260px,1fr) minmax(300px,.9fr);gap:clamp(44px,8vw,110px);align-items:center}
+  .cw-wheel-wrap{position:relative;width:min(100%,480px);aspect-ratio:1;margin:auto}
+  .cw-wheel{width:100%;height:100%;border-radius:50%;border:10px solid #f7f3ea;background:conic-gradient(#f7f3ea 0 60deg,#31587d 60deg 120deg,#f7f3ea 120deg 180deg,#31587d 180deg 240deg,#f7f3ea 240deg 300deg,#31587d 300deg);box-shadow:0 24px 70px rgba(0,0,0,.28);transition:transform 4.8s cubic-bezier(.12,.72,.08,1)}
+  .cw-wheel:after{content:'COLDWAKE';position:absolute;inset:36%;display:grid;place-items:center;border-radius:50%;background:var(--cw-navy);color:#fff;border:5px solid #f7f3ea;font-family:'Anton',sans-serif;letter-spacing:.08em;font-size:clamp(16px,3vw,28px)}
+  .cw-wheel__label{position:absolute;z-index:1;width:94px;text-align:center;font-size:10px;line-height:1.15;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--cw-navy)}
+  .cw-wheel__label:nth-child(even){color:#fff}.cw-wheel__label:nth-child(1){top:9%;left:50%;transform:translateX(-50%)}.cw-wheel__label:nth-child(2){top:25%;right:4%;transform:rotate(60deg)}.cw-wheel__label:nth-child(3){right:4%;bottom:25%;transform:rotate(120deg)}.cw-wheel__label:nth-child(4){bottom:9%;left:50%;transform:translateX(-50%) rotate(180deg);color:#fff}.cw-wheel__label:nth-child(5){left:4%;bottom:25%;transform:rotate(240deg)}.cw-wheel__label:nth-child(6){top:25%;left:4%;transform:rotate(300deg);color:#fff}
+  .cw-wheel-pointer{position:absolute;z-index:2;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:32px solid #fff}
+  .cw-reward h2,.cw-story h2{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:.9;margin:0}
+  .cw-reward h2{font-size:clamp(48px,7vw,92px)}
+  .cw-reward p{color:rgba(255,255,255,.76);line-height:1.7;max-width:480px}
+  .cw-spin{background:#fff;color:var(--cw-navy);border:0;padding:16px 28px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+  .cw-spin[disabled]{opacity:.55;cursor:not-allowed}
+  .cw-reward-result{min-height:48px;margin-top:20px;font-weight:700;color:#fff!important}
+  .cw-impact{max-width:1180px;margin:0 auto;padding:92px 32px;display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(34px,8vw,120px);border-top:1px solid var(--cw-navy)}
+  .cw-impact h2{font-family:'Anton',sans-serif;font-size:clamp(44px,7vw,88px);line-height:.9;text-transform:uppercase;margin:0}
+  .cw-impact p{font-size:17px;line-height:1.75;margin:0;max-width:620px}
+  .cw-story{background:#e8e0d2;color:var(--cw-navy);padding:clamp(72px,10vw,130px) 32px}
+  .cw-story__inner{max-width:1060px;margin:auto;display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(40px,8vw,120px)}
+  .cw-story h2{font-size:clamp(54px,9vw,120px)}
+  .cw-story__copy{font-size:17px;line-height:1.78}
+  .cw-story__copy p{margin:0 0 24px}
+  .cw-story__close{font-family:'Anton',sans-serif;font-size:clamp(30px,4vw,48px);line-height:1.05!important;text-transform:uppercase;margin-top:44px!important}
+  @media(max-width:760px){.cw-gallery{grid-template-columns:1fr}.cw-gallery__rail{grid-template-columns:repeat(3,1fr)}.cw-reward__inner,.cw-impact,.cw-story__inner{grid-template-columns:1fr}.cw-wheel-wrap{max-width:360px}.cw-origin__image{width:min(100%,390px)!important}.cw-story{padding-left:20px;padding-right:20px}}
 </style>
 </head>
 <body>
@@ -195,8 +235,8 @@
       <!-- ANNOUNCEMENT MARQUEE (translucent) -->
       <div style="overflow:hidden;white-space:nowrap;background:rgba(241,237,228,.10);backdrop-filter:blur(6px);border-bottom:1px solid rgba(241,237,228,.22);color:#f1ede4;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:8px 0">
         <div style="display:inline-flex;gap:56px;padding-right:56px;animation:cw-marquee 30s linear infinite">
-          <span>Free U.S. shipping on all orders over $75</span><span>·</span><span>New — The Anchor Tee</span><span>·</span><span>Built for the wake</span><span>·</span><span>Free U.S. shipping on all orders over $75</span><span>·</span><span>New — The Anchor Tee</span><span>·</span><span>Built for the wake</span><span>·</span>
-          <span>Free U.S. shipping on all orders over $75</span><span>·</span><span>New — The Anchor Tee</span><span>·</span><span>Built for the wake</span><span>·</span><span>Free U.S. shipping on all orders over $75</span><span>·</span><span>New — The Anchor Tee</span><span>·</span><span>Built for the wake</span><span>·</span>
+          <span>First drop — not available right now</span><span>·</span><span>Small runs</span><span>·</span><span>No investors</span><span>·</span><span>Not selling this</span><span>·</span><span>First drop — not available right now</span><span>·</span><span>Small runs</span><span>·</span><span>No investors</span><span>·</span><span>Not selling this</span><span>·</span>
+          <span>First drop — not available right now</span><span>·</span><span>Small runs</span><span>·</span><span>No investors</span><span>·</span><span>Not selling this</span><span>·</span><span>First drop — not available right now</span><span>·</span><span>Small runs</span><span>·</span><span>No investors</span><span>·</span><span>Not selling this</span><span>·</span>
         </div>
       </div>
       <!-- NAV (transparent over hero) -->
@@ -224,8 +264,9 @@
 
     <!-- HERO HEADLINE -->
     <div style="position:absolute;left:0;right:0;bottom:0;padding:0 32px 60px;max-width:1520px;margin:0 auto">
-      <div style="color:#e9e3d5;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-bottom:14px">Depth 01 · First Drop</div>
-      <h1 style="font-family:'Anton',sans-serif;color:#f1ede4;margin:0;font-size:clamp(52px,9vw,138px);line-height:.84;letter-spacing:.01em;text-transform:uppercase;text-shadow:0 2px 34px rgba(0,0,0,.35)">Below the<br>surface</h1>
+      <div style="color:#e9e3d5;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-bottom:14px">Coldwake · First Drop</div>
+      <h1 style="font-family:'Anton',sans-serif;color:#f1ede4;margin:0;font-size:clamp(52px,9vw,138px);line-height:.84;letter-spacing:.01em;text-transform:uppercase;text-shadow:0 2px 34px rgba(0,0,0,.35)">The ocean doesn't<br>care if you make it.</h1>
+      <p style="max-width:640px;color:#f1ede4;font-size:clamp(18px,2vw,26px);margin:24px 0 0;font-weight:600">Go anyway.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:30px">
         <a href="#shop" class="cw-btn" style="display:inline-block;background:#f1ede4;color:#030b21;padding:15px 34px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">Explore the drop</a>
         <a href="#origin" class="cw-btn" style="display:inline-block;border:1.5px solid rgba(241,237,228,.7);color:#f1ede4;padding:15px 34px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">Our origin</a>
@@ -236,8 +277,8 @@
   <!-- INTRO STATEMENT -->
   <section class="cw-section-pad" style="max-width:1000px;margin:0 auto;padding:90px 32px 70px;text-align:center">
     <p style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:#030b21;margin:0 0 20px">Coldwake / Est. 2026</p>
-    <h2 style="font-family:'Anton',sans-serif;font-size:clamp(30px,4.6vw,60px);line-height:1.02;text-transform:uppercase;margin:0;text-wrap:balance">Heavyweight essentials<br>drawn from the water line</h2>
-    <p style="max-width: 560px; margin: 26px auto 0; font-size: 15px; line-height: 1.7; color: #3a3d42; font-family: Open Sans">One tee, cut heavy and built to last. We start small and make it right — no noise, no filler, just the pieces we'd wear every day off the dock.</p>
+    <h2 style="font-family:'Anton',sans-serif;font-size:clamp(30px,4.6vw,60px);line-height:1.02;text-transform:uppercase;margin:0;text-wrap:balance">Heavyweight cotton for people<br>who never wanted to fit in</h2>
+    <p style="max-width:620px;margin:26px auto 0;font-size:15px;line-height:1.7;color:#3a3d42">Anchor on the chest, so you know what you are. Octopus on the back, because that's where you're headed. Small runs. No investors. Not selling this.</p>
   </section>
 
   <!-- ORIGIN / BRAND STORY -->
@@ -247,8 +288,8 @@
     </div>
     <div class="cw-origin__number">01 / Origin</div>
     <div class="cw-origin__copy">
-      <h2>Made for<br>the deep end.</h2>
-      <p>Coldwake is a study in pressure, movement, and calm below the surface. Built for the moments that pull you beyond the shoreline, with fewer pieces and a sharper point of view.</p>
+      <h2>It never had to<br>become normal.</h2>
+      <p>There is a spot a mile down where basically nothing should survive. Something does anyway, and it is smart. That is where Coldwake starts. Read the full origin story below.</p>
     </div>
   </section>
 
@@ -263,13 +304,13 @@
       <!-- Real product -->
       <a href="#feature" style="display:flex;flex-direction:column">
         <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#e4ddce">
-          <span style="position:absolute;top:12px;left:12px;z-index:2;background:#030b21;color:#f1ede4;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:5px 9px">New</span>
+          <span style="position:absolute;top:12px;left:12px;z-index:2;background:#030b21;color:#f1ede4;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:5px 9px">Not available</span>
           <img src="assets/anchor-tee-1.jpg" alt="The Anchor Tee, navy anchor on natural cotton" style="width:100%;height:100%;object-fit:cover">
         </div>
         <div style="padding-top:14px;display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:600">
           <span>The Anchor Tee — Natural</span><span>$45</span>
         </div>
-        <div style="font-size:12px;color:#6a6d72;padding-top:3px">Heavyweight cotton · S–XXL</div>
+        <div style="font-size:12px;color:#6a6d72;padding-top:3px">Heavyweight cotton · Small–2XL</div>
       </a>
 
       <!-- Placeholders -->
@@ -334,21 +375,29 @@
 
   <!-- FEATURED PRODUCT -->
   <section id="feature" class="cw-split cw-feature cw-section-pad" style="max-width:1440px;margin:0 auto;padding:90px 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
-    <div style="aspect-ratio:4/5;overflow:hidden;background:#e4ddce">
-      <img src="assets/anchor-tee-2.jpg" alt="The Anchor Tee" style="width:100%;height:100%;object-fit:cover;object-position:center 30%">
+    <div class="cw-gallery" aria-label="Anchor Tee product gallery">
+      <div class="cw-gallery__main"><img id="cw-gallery-main" src="assets/anchor-tee-2.jpg" alt="The Anchor Tee worn on deck"></div>
+      <div class="cw-gallery__rail">
+        <button type="button" class="cw-thumb is-active" data-gallery-src="assets/anchor-tee-2.jpg" data-gallery-alt="The Anchor Tee worn on deck"><img src="assets/anchor-tee-2.jpg" alt="View worn Anchor Tee photo"></button>
+        <button type="button" class="cw-thumb" data-gallery-src="assets/anchor-tee-1.jpg" data-gallery-alt="Natural Anchor Tee front detail"><img src="assets/anchor-tee-1.jpg" alt="View Anchor Tee front detail"></button>
+        <div class="cw-thumb cw-thumb--future">Future product photo</div>
+      </div>
     </div>
     <div>
       <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:#030b21;margin-bottom:16px">The whole collection · for now</div>
       <h2 style="font-family:'Anton',sans-serif;font-size:clamp(40px,5.5vw,78px);line-height:.9;text-transform:uppercase;margin:0">The Anchor Tee</h2>
       <div id="cw-price" style="font-size:22px;font-weight:600;margin:20px 0 8px">$45</div>
-      <p style="font-size: 16px; line-height: 1.65; color: #3a3d42; max-width: 440px; margin: 0 0 26px; font-family: ui-monospace">Our first and only piece. Natural undyed cotton, heavyweight body, and a small navy anchor over the heart. The one shirt we wanted to make before anything else.</p>
+      <div class="cw-availability">Not available right now</div>
+      <p style="font-size:16px;line-height:1.65;color:#3a3d42;max-width:440px;margin:0 0 26px">Heavyweight cotton made to last past one season. Anchor on the chest. Octopus on the back. Small run, no investors.</p>
+      <div class="cw-kicker" style="margin-bottom:10px">Choose your size</div>
       <div id="cw-sizes" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" role="radiogroup" aria-label="Size">
         <span style="font-size:12px;color:#6a6d72">Loading sizes…</span>
       </div>
+      <p style="font-size:12px;margin:0 0 20px;color:#5f6570">Sizes are shown clearly now. Pick one to save your preference for the drop.</p>
       <p id="cw-feature-error" role="alert" aria-live="polite" style="display:none;color:#b23b3b;font-size:12.5px;margin:0 0 16px"></p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button type="button" id="cw-add" class="cw-btn" style="border:0;cursor:pointer;background:#030b21;color:#f1ede4;padding:16px 40px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">Add to cart</button>
-        <button type="button" id="cw-buy" class="cw-btn" style="cursor:pointer;background:transparent;color:#030b21;border:1.5px solid #030b21;padding:16px 40px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">Buy it now</button>
+        <button type="button" id="cw-add" class="cw-btn cw-unavailable" disabled style="border:0;background:#030b21;color:#f1ede4;padding:16px 40px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">Not available right now</button>
+        <a href="#newsletter" class="cw-btn" style="display:inline-block;background:transparent;color:#030b21;border:1.5px solid #030b21;padding:16px 40px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">Join the waitlist</a>
       </div>
     </div>
   </section>
@@ -384,6 +433,53 @@
     </div>
   </section>
 
+  <!-- DROP REWARD WHEEL -->
+  <section id="reward" class="cw-reward">
+    <div class="cw-reward__inner">
+      <div class="cw-wheel-wrap" aria-hidden="true">
+        <div class="cw-wheel-pointer"></div>
+        <div class="cw-wheel" id="cw-wheel"><span class="cw-wheel__label">20% off</span><span class="cw-wheel__label">Free shipping</span><span class="cw-wheel__label">10% off</span><span class="cw-wheel__label">Early access</span><span class="cw-wheel__label">15% off</span><span class="cw-wheel__label">Another shot</span></div>
+      </div>
+      <div>
+        <div class="cw-kicker" style="margin-bottom:18px">One turn per visitor</div>
+        <h2>Take a turn.</h2>
+        <p>Spin for a first-drop reward: 20% off, 15% off, 10% off, free shipping, early access, or another shot. Rewards become usable when the Anchor Tee is released.</p>
+        <button type="button" class="cw-spin" id="cw-spin">Spin the wheel</button>
+        <p class="cw-reward-result" id="cw-reward-result" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCEAN GIVING PLACEHOLDER -->
+  <section id="impact" class="cw-impact">
+    <div>
+      <div class="cw-kicker" style="margin-bottom:18px">A commitment in progress</div>
+      <h2>10% back to the ocean.</h2>
+    </div>
+    <div>
+      <p>We plan to donate 10% of profits to work that helps the ocean. The organization and exact reporting process have not been chosen yet. We will name the partner, define what counts as profit, and publish the receipts before the first drop goes on sale.</p>
+    </div>
+  </section>
+
+  <!-- FULL ORIGIN STORY -->
+  <section id="story" class="cw-story">
+    <div class="cw-story__inner">
+      <div>
+        <div class="cw-kicker" style="margin-bottom:20px">The origin</div>
+        <h2>Go anyway.</h2>
+      </div>
+      <div class="cw-story__copy">
+        <p>I've been obsessed with the ocean for as long as I can remember. Not in a vague, aesthetic way — actual obsession, the kind you have as a kid before you learn to be embarrassed about it. Octopuses specifically.</p>
+        <p>There's a spot a mile down where basically nothing should be able to survive, and not only does something survive down there, it's smart. It solves problems. It changes its whole body to fit through a gap the size of its own eye. It never had to become normal to make it.</p>
+        <p>That sticks with me living in a city where the easiest way to get through a day is to look like everybody else.</p>
+        <p>The ocean doesn't owe you anything. It won't tell you what you'll find before you go in, and it won't reward you for being brave about it. That's actually the point — nobody down there is deciding whether you're allowed. You just go, or you don't.</p>
+        <p>The anchor's on the chest because you should know what you are before you go looking for what's dark. Heavyweight cotton because it should last past one season, not just look good in it.</p>
+        <p>Small runs. No investors. Not selling this, ever.</p>
+        <p class="cw-story__close">The water doesn't care if you made it through. You did anyway — that's the wake.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER (Dark Seas style) -->
   <footer id="about" style="background:#030b21;color:#9fb0c4">
     <!-- ocean-fill wordmark -->
@@ -404,7 +500,7 @@
       <div>
         <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 20px">Company</h4>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:14px">
-          <li><a href="#about">About</a></li>
+          <li><a href="#story">Origin story</a></li>
           <li><a href="#journal">Blog</a></li>
           <li><a href="#about">Support</a></li>
         </ul>
@@ -423,13 +519,14 @@
         </div>
       </div>
       <div id="newsletter">
-        <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 12px">Join our newsletter</h4>
-        <p style="font-size:13px;line-height:1.6;margin:0 0 18px;color:#c3cfdd;font-family:ui-monospace,Menlo,monospace">Stay updated with our latest news and offers.</p>
+        <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 12px">Join the first-drop waitlist</h4>
+        <p style="font-size:13px;line-height:1.6;margin:0 0 18px;color:#c3cfdd">Drop timing, ocean-giving updates, and the occasional field note. No noise.</p>
         <form id="cw-news" style="display:flex;align-items:center;background:#f1ede4;border-radius:6px;padding:5px 5px 5px 16px;max-width:320px">
-          <input id="cw-email" type="email" required placeholder="Email" style="flex:1;min-width:0;border:0;background:transparent;outline:none;font-family:inherit;font-size:14px;color:#030b21;padding:9px 0">
-          <button type="submit" aria-label="Subscribe" style="flex:none;width:36px;height:36px;border:0;border-radius:5px;background:#030b21;color:#f1ede4;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">→</button>
+          <input id="cw-email" name="email" type="email" autocomplete="email" required placeholder="Email address" aria-label="Email address" style="flex:1;min-width:0;border:0;background:transparent;outline:none;font-family:inherit;font-size:14px;color:#030b21;padding:9px 0">
+          <input id="cw-company" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+          <button id="cw-news-submit" type="submit" aria-label="Join the waitlist" style="flex:none;width:36px;height:36px;border:0;border-radius:5px;background:#030b21;color:#f1ede4;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">→</button>
         </form>
-        <p id="cw-news-status" style="font-size:12px;color:#7f92a8;margin:14px 0 0">We respect your privacy. Unsubscribe anytime.</p>
+        <p id="cw-news-status" role="status" aria-live="polite" style="font-size:12px;color:#aebdcb;margin:14px 0 0">We respect your privacy. Unsubscribe anytime.</p>
       </div>
     </div>
 
@@ -475,8 +572,8 @@
   <div class="cw-items" id="cw-items"></div>
   <div class="cw-drawer__foot">
     <div class="cw-subtotal"><span>Subtotal</span><span id="cw-subtotal">$0</span></div>
-    <button class="cw-checkout" id="cw-checkout">Checkout</button>
-    <p class="cw-foot-note">Checkout is handled securely by Fourthwall.</p>
+    <button class="cw-checkout" id="cw-checkout" disabled>Not available right now</button>
+    <p class="cw-foot-note">Purchasing will open with the first drop.</p>
   </div>
 </aside>
 
