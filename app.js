@@ -400,6 +400,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const wheel = $('#cw-wheel');
   const spin = $('#cw-spin');
   const result = $('#cw-reward-result');
+  const wheelModal = $('#cw-wheel-modal');
+  const wheelClose = $('#cw-wheel-close');
+  let wheelLastFocus = null;
+  const openWheelModal = () => {
+    wheelLastFocus = document.activeElement;
+    wheelModal.classList.add('is-open');
+    wheelModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    wheelClose.focus();
+  };
+  const closeWheelModal = () => {
+    wheelModal.classList.remove('is-open');
+    wheelModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (wheelLastFocus && typeof wheelLastFocus.focus === 'function') wheelLastFocus.focus();
+  };
+  window.setTimeout(openWheelModal, 2000);
+  wheelClose.addEventListener('click', closeWheelModal);
+  wheelModal.addEventListener('click', (event) => { if (event.target === wheelModal) closeWheelModal(); });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && wheelModal.classList.contains('is-open')) closeWheelModal();
+  });
   let storedReward = null;
   try { storedReward = JSON.parse(localStorage.getItem('cw_reward')); } catch (_) {}
   if (storedReward && storedReward.label) {

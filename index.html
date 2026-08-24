@@ -220,7 +220,7 @@
   .cw-story__copy p{margin:0 0 24px}
   .cw-story__close{font-family:'Anton',sans-serif;font-size:clamp(30px,4vw,48px);line-height:1.05!important;text-transform:uppercase;margin-top:44px!important}
   /* High-contrast section rhythm, pulled from the reward wheel palette. */
-  :root{--cw-slate:#31587d;--cw-foam:#dce8e4;--cw-ink:#020d1e}
+  :root{--cw-slate:var(--cw-navy);--cw-foam:var(--cw-white);--cw-ink:var(--cw-navy);--cw-ivory:var(--cw-white)}
   #origin{background:var(--cw-foam)!important;padding-top:96px!important;padding-left:max(32px,calc((100vw - 1440px)/2 + 32px))!important;padding-right:max(32px,calc((100vw - 1440px)/2 + 32px))!important}
   #shop{max-width:none!important;background:var(--cw-navy)!important;color:var(--cw-white)!important;padding:82px max(32px,calc((100vw - 1440px)/2 + 32px)) 88px!important}
   #shop h2,#shop>div:first-child{color:var(--cw-white)!important;border-color:var(--cw-white)!important}
@@ -235,12 +235,47 @@
   #journal [style*="color:#6a6d72"]{color:rgba(255,255,255,.74)!important}
   #journal [style*="repeating-linear-gradient"]{background:var(--cw-ivory)!important;border-color:rgba(255,255,255,.55)!important}
   #journal [style*="repeating-linear-gradient"] span{color:var(--cw-navy)!important}
-  .cw-reward{background:var(--cw-slate)!important}
+  .cw-reward{background:var(--cw-white)!important;color:var(--cw-navy)!important}
   .cw-wheel{background:conic-gradient(var(--cw-ivory) 0 60deg,var(--cw-navy) 60deg 120deg,var(--cw-ivory) 120deg 180deg,var(--cw-navy) 180deg 240deg,var(--cw-ivory) 240deg 300deg,var(--cw-navy) 300deg)!important}
   .cw-impact{max-width:none!important;background:var(--cw-ivory)!important;padding-left:max(32px,calc((100vw - 1180px)/2 + 32px))!important;padding-right:max(32px,calc((100vw - 1180px)/2 + 32px))!important}
   .cw-story{background:var(--cw-navy)!important;color:var(--cw-white)!important}
   .cw-story .cw-kicker,.cw-story h2,.cw-story__copy,.cw-story__copy p{color:var(--cw-white)!important}
   footer{background:var(--cw-ink)!important}
+  /* Strict brand palette: only Coldwake navy and white outside photography. */
+  body,body>div:first-child,#top+section,#collection,#feature,#impact{background:var(--cw-white)!important;color:var(--cw-navy)!important}
+  #origin,#collection,#journal,.cw-story,footer,.cw-fabric-img{background:var(--cw-navy)!important}
+  #origin,.cw-origin h2,.cw-origin p,.cw-origin__number,#collection,#journal,.cw-story,footer{color:var(--cw-white)!important}
+  #shop{background:var(--cw-white)!important;color:var(--cw-navy)!important}
+  #shop h2,#shop>div:first-child,#shop>.cw-grid-4>a>div:not(:first-child),#shop>.cw-grid-4>a>div:last-child,#shop>.cw-grid-4>div>div:not(:first-child){color:var(--cw-navy)!important;border-color:var(--cw-navy)!important}
+  #fabric{background:var(--cw-white)!important}
+  #fabric .cw-fabric-copy,#fabric .cw-fabric-copy h2,#fabric .cw-fabric-copy p,#fabric .cw-fabric-copy div{background:var(--cw-white)!important;color:var(--cw-navy)!important}
+  #fabric .cw-fabric-copy .cw-btn{background:var(--cw-navy)!important;color:var(--cw-white)!important}
+  #fabric .cw-fabric-img span{color:var(--cw-white)!important}
+  #origin .cw-origin__image{border:2px solid var(--cw-white)!important}
+  #top h1,#top p,#top [style*="#e9e3d5"]{color:var(--cw-white)!important}
+  #shop [style*="repeating-linear-gradient"],#journal [style*="repeating-linear-gradient"],#collection>a:last-child{background:var(--cw-white)!important}
+  footer{border-top:2px solid var(--cw-white)}
+  /* Timed reward modal. */
+  .cw-wheel-modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:20px;background:rgba(3,26,56,.92);opacity:0;visibility:hidden;transition:opacity .24s ease,visibility .24s ease}
+  .cw-wheel-modal.is-open{opacity:1;visibility:visible}
+  .cw-wheel-modal .cw-reward{position:relative;width:min(100%,1040px);max-height:calc(100svh - 40px);overflow:auto;padding:clamp(30px,5vw,64px);border:3px solid var(--cw-navy);box-shadow:0 28px 90px rgba(3,26,56,.45)}
+  .cw-wheel-modal .cw-reward__inner{grid-template-columns:minmax(300px,.9fr) minmax(300px,1.1fr);gap:clamp(34px,6vw,72px)}
+  .cw-wheel-modal .cw-reward h2,.cw-wheel-modal .cw-reward p,.cw-wheel-modal .cw-kicker{color:var(--cw-navy)!important}
+  .cw-wheel-close{position:absolute;top:14px;right:14px;z-index:4;width:46px;height:46px;border:2px solid var(--cw-navy);background:var(--cw-white);color:var(--cw-navy);font-size:30px;line-height:1;cursor:pointer}
+  .cw-wheel__label{width:108px;font-size:13px;line-height:1.05;letter-spacing:.025em;text-shadow:none}
+  .cw-wheel__label:nth-child(1){top:11%;left:70%;transform:translate(-50%,-50%);color:var(--cw-navy)}
+  .cw-wheel__label:nth-child(2){top:50%;right:-2%;transform:translateY(-50%);color:var(--cw-white)}
+  .cw-wheel__label:nth-child(3){right:10%;bottom:12%;transform:none;color:var(--cw-navy)}
+  .cw-wheel__label:nth-child(4){bottom:11%;left:17%;transform:none;color:var(--cw-white)}
+  .cw-wheel__label:nth-child(5){top:50%;left:-2%;transform:translateY(-50%);color:var(--cw-navy)}
+  .cw-wheel__label:nth-child(6){top:11%;left:10%;transform:none;color:var(--cw-white)}
+  .cw-wheel-modal .cw-spin{background:var(--cw-navy);color:var(--cw-white);border:2px solid var(--cw-navy)}
+  .cw-wheel-modal .cw-reward-result{color:var(--cw-navy)!important}
+  .cw-wheel-modal .cw-wheel{border-color:var(--cw-white)!important}
+  .cw-wheel-modal .cw-wheel:after{border-color:var(--cw-white)!important}
+  #cw-news{background:var(--cw-white)!important}
+  .cw-toast{background:var(--cw-navy)!important;color:var(--cw-white)!important}
+  @media(max-width:760px){.cw-wheel-modal{padding:10px}.cw-wheel-modal .cw-reward{max-height:calc(100svh - 20px);padding:64px 22px 28px}.cw-wheel-modal .cw-reward__inner{grid-template-columns:1fr}.cw-wheel-modal .cw-wheel-wrap{max-width:300px}.cw-wheel__label{width:78px;font-size:10px}.cw-wheel-close{top:10px;right:10px}}
   @media(max-width:760px){.cw-gallery{grid-template-columns:1fr}.cw-gallery__rail{grid-template-columns:repeat(3,1fr)}.cw-reward__inner,.cw-impact,.cw-story__inner{grid-template-columns:1fr}.cw-wheel-wrap{max-width:360px}.cw-origin__image{width:min(100%,390px)!important}.cw-story{padding-left:20px;padding-right:20px}}
 </style>
 </head>
@@ -383,7 +418,7 @@
   </section>
 
   <!-- FULL-BLEED SPLIT: copy + placeholder for low-angle fishing shot -->
-  <section class="cw-split" style="position:relative;width:100%;background:#030b21;display:grid;grid-template-columns:1fr 1fr;align-items:stretch">
+  <section id="fabric" class="cw-split" style="position:relative;width:100%;background:#030b21;display:grid;grid-template-columns:1fr 1fr;align-items:stretch">
     <div class="cw-fabric-copy" style="padding:clamp(48px,7vw,100px) 32px;display:flex;flex-direction:column;justify-content:center;max-width:620px;margin-left:auto">
       <div style="color:#e9e3d5;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;margin-bottom:16px">The fabric</div>
       <h2 style="font-family:'Anton',sans-serif;color:#f1ede4;font-size:clamp(34px,5vw,72px);line-height:.9;text-transform:uppercase;margin:0">Cut heavy.<br>Worn hard.</h2>
@@ -455,8 +490,10 @@
     </div>
   </section>
 
-  <!-- DROP REWARD WHEEL -->
+  <!-- DROP REWARD WHEEL MODAL -->
+  <div id="cw-wheel-modal" class="cw-wheel-modal" role="dialog" aria-modal="true" aria-labelledby="cw-wheel-title" aria-hidden="true">
   <section id="reward" class="cw-reward">
+    <button type="button" class="cw-wheel-close" id="cw-wheel-close" aria-label="Close reward wheel">×</button>
     <div class="cw-reward__inner">
       <div class="cw-wheel-wrap" aria-hidden="true">
         <div class="cw-wheel-pointer"></div>
@@ -464,13 +501,14 @@
       </div>
       <div>
         <div class="cw-kicker" style="margin-bottom:18px">One turn per visitor</div>
-        <h2>Take a turn.</h2>
+        <h2 id="cw-wheel-title">Take a turn.</h2>
         <p>Spin for a first-drop reward: 20% off, 15% off, 10% off, free shipping, early access, or another shot. Rewards become usable when the Anchor Tee is released.</p>
         <button type="button" class="cw-spin" id="cw-spin">Spin the wheel</button>
         <p class="cw-reward-result" id="cw-reward-result" role="status" aria-live="polite"></p>
       </div>
     </div>
   </section>
+  </div>
 
   <!-- OCEAN GIVING PLACEHOLDER -->
   <section id="impact" class="cw-impact">
