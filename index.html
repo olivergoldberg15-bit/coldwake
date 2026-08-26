@@ -132,21 +132,7 @@
      in height depending on the headline's wrapped length) never bleeds
      through/collides with the panel — without it, hero copy shows through
      and visually clashes at the panel's bottom edge on shorter viewports. */
-  .cw-about-scrim{position:fixed;inset:0;background:rgba(3,11,33,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;z-index:25}
-  .cw-about-scrim.is-open{opacity:1;visibility:visible}
-  .cw-about-dd{position:absolute;top:100%;left:32px;right:32px;max-width:900px;display:grid;grid-template-columns:.85fr 1.15fr;border-radius:10px;overflow:hidden;box-shadow:0 30px 90px rgba(3,11,33,.4);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s ease,transform .3s ease,visibility .3s ease;z-index:30}
-  .cw-about-dd.is-open{opacity:1;visibility:visible;transform:translateY(0)}
-  .cw-about-dd__panel{position:relative;padding:34px 30px;background:rgba(247,243,234,.92);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15)}
-  .cw-about-dd__panel h3{font-family:'Anton',sans-serif;font-size:26px;text-transform:uppercase;margin:0 0 26px;color:#030b21;letter-spacing:.01em}
-  .cw-about-dd__panel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
-  .cw-about-dd__panel a{font-size:15px;font-weight:600;color:#1c1e22;transition:opacity .15s ease}
-  .cw-about-dd__panel a:hover{opacity:.55}
-  .cw-about-dd__close{position:absolute;top:14px;left:14px;z-index:2;width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px solid #030b21;color:#030b21;font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
-  .cw-about-dd__photo{position:relative;min-height:280px;background:#0a1d33}
-  .cw-about-dd__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
   @media(max-width:640px){
-    .cw-about-dd{grid-template-columns:1fr;left:16px;right:16px;max-width:none}
-    .cw-about-dd__photo{min-height:160px;order:-1}
   }
   /* toast */
   .cw-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#030b21;color:#f1ede4;padding:13px 24px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;z-index:90;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;box-shadow:0 12px 40px rgba(0,0,0,.3)}
@@ -184,7 +170,6 @@
   /* ===== responsive ===== */
   @media(max-width:900px){
     header nav#cw-nav-links>a,header nav#cw-nav-links>button:not(#cw-burger){display:none!important}
-    .cw-about-dd,.cw-about-scrim{display:none!important}
     #cw-burger{display:inline-flex!important}
     .cw-hide-mobile{display:none!important}
     .cw-grid-4{grid-template-columns:repeat(2,1fr)!important}
@@ -319,7 +304,7 @@
             <a href="#collection" style="color:#f1ede4">Collection</a>
             <a href="#origin" style="color:#f1ede4">Origin</a>
             <a href="#journal" style="color:#f1ede4">Journal</a>
-            <button type="button" id="cw-about-toggle" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#f1ede4">About</button>
+            <a href="about.html" style="color:#f1ede4">About</a>
           </nav>
           <a href="#top" class="cw-wordmark" style="font-family:'Anton',sans-serif;font-size:27px;letter-spacing:.14em;text-align:center;line-height:1;white-space:nowrap;color:#f1ede4">COLDWAKE</a>
           <div style="display:flex;gap:22px;justify-content:flex-end;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600">
@@ -330,26 +315,6 @@
         </div>
       </header>
 
-      <!-- ABOUT DROPDOWN — frosted panel, opens under the nav on THIS page.
-           Its own links go to about.html; opening it does not navigate.
-           The scrim is what stops the hero headline behind it from
-           bleeding through/colliding with the panel. -->
-      <div class="cw-about-scrim" id="cw-about-scrim"></div>
-      <div class="cw-about-dd" id="cw-about-dd" aria-hidden="true">
-        <button class="cw-about-dd__close" id="cw-about-dd-close" aria-label="Close">&times;</button>
-        <div class="cw-about-dd__panel">
-          <h3>About</h3>
-          <ul>
-            <li><a href="about.html#story">Our Story</a></li>
-            <li><a href="about.html#contact">Contact</a></li>
-            <li><a href="about.html#faq">FAQ</a></li>
-            <li><a href="about.html#returns">Returns &amp; Exchanges</a></li>
-          </ul>
-        </div>
-        <div class="cw-about-dd__photo">
-          <img src="assets/about-diver.jpg" alt="Snorkeler swimming near a reef">
-        </div>
-      </div>
     </div>
 
     <!-- HERO HEADLINE -->

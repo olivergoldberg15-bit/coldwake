@@ -344,32 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
     a.addEventListener('click', closePanels);
   });
 
-  // about dropdown (frosted panel under the nav — not the dark cw-overlay,
-  // it has its own scrim so hero content behind it can't bleed through)
-  const aboutToggle = $('#cw-about-toggle');
-  const aboutDd = $('#cw-about-dd');
-  const aboutScrim = $('#cw-about-scrim');
-  if (aboutToggle && aboutDd && aboutScrim) {
-    const closeAboutDd = () => {
-      aboutDd.classList.remove('is-open');
-      aboutDd.setAttribute('aria-hidden', 'true');
-      aboutScrim.classList.remove('is-open');
-    };
-    const openAboutDd = () => {
-      aboutDd.classList.add('is-open');
-      aboutDd.setAttribute('aria-hidden', 'false');
-      aboutScrim.classList.add('is-open');
-    };
-    aboutToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (aboutDd.classList.contains('is-open')) closeAboutDd();
-      else openAboutDd();
-    });
-    $('#cw-about-dd-close').addEventListener('click', closeAboutDd);
-    aboutScrim.addEventListener('click', closeAboutDd);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAboutDd(); });
-  }
-
   // overlay + escape
   overlay().addEventListener('click', closePanels);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanels(); });
