@@ -12,6 +12,10 @@ window.COLDWAKE_FW = {
   api: '/api/fw',                                // same-origin serverless proxy
   shopDomain: 'coldwake-shop.fourthwall.com',    // hosted checkout domain
   currency: 'USD',
+  // Pin the featured product. This is the Fourthwall product UUID from the
+  // dashboard URL (…/products/all/<id>/). Without it the site would just take
+  // whatever product happens to come back first from the collection.
+  productId: '979dacf7-9f77-4061-9c09-2f092a8a1bae',
 };
 
 /* Unlock-discount popup — first-visit email capture, shown once per browser.

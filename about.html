@@ -92,13 +92,17 @@
   .cw-hide-mobile{display:inline}
   .cw-wordmark{font-family:'Anton',sans-serif;font-size:27px;letter-spacing:.14em;text-align:center;line-height:1;white-space:nowrap}
 
-  .about-hero{position:relative;min-height:70vh;overflow:hidden;background:#0a1d33}
-  .about-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
-  .about-nav{position:relative;z-index:2;width:min(440px,48%);min-height:70vh;padding:56px clamp(28px,5vw,60px);background:rgba(247,243,234,.5);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15);display:flex;flex-direction:column}
-  .about-nav h1{font-family:'Anton',sans-serif;font-size:clamp(30px,4vw,44px);text-transform:uppercase;margin:0 0 36px;letter-spacing:.01em;color:#030b21}
-  .about-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:24px}
-  .about-nav a{display:block;font-size:17px;font-weight:600;color:#1c1e22;transition:opacity .15s ease}
-  .about-nav a:hover{opacity:.55}
+  /* hero: two rounded panels side by side inside a gutter, matching the
+     reference layout — glass nav card left, full-bleed photo right */
+  .about-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;max-width:1520px;margin:0 auto;padding:18px 32px 40px;align-items:stretch}
+  .about-hero-media{order:2;position:relative;border-radius:20px;overflow:hidden;background:#0a1d33;min-height:min(72vh,660px)}
+  .about-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+  .about-nav{order:1;border-radius:20px;padding:clamp(34px,4vw,58px) clamp(28px,4vw,54px);background:rgba(3,11,33,.055);border:1px solid rgba(3,11,33,.10);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15);display:flex;flex-direction:column;min-height:min(72vh,660px)}
+  .about-nav h1{font-family:'Anton',sans-serif;font-size:clamp(30px,3.4vw,42px);text-transform:uppercase;margin:0 0 34px;letter-spacing:.01em;color:#030b21}
+  .about-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:26px}
+  .about-nav a{display:block;font-size:clamp(17px,1.5vw,21px);font-weight:600;color:#1c1e22;transition:opacity .15s ease,transform .15s ease}
+  .about-nav a:hover{opacity:.55;transform:translateX(3px)}
+  .about-hero-note{margin-top:auto;padding-top:34px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#6a6d72}
 
   .about-section{max-width:760px;margin:0 auto;padding:80px 32px;border-bottom:1px solid rgba(3,11,33,.14)}
   .about-section:last-of-type{border-bottom:0}
@@ -115,9 +119,10 @@
     #cw-burger{display:inline-flex}
     /* glass-over-photo doesn't read well this narrow — drop to a plain
        solid panel below the photo instead of overlaying it */
-    .about-hero{display:flex;flex-direction:column;min-height:0}
-    .about-hero-bg{position:static;width:100%;height:280px;object-fit:cover}
-    .about-nav{position:static;width:100%;min-height:0;background:#f7f3ea;backdrop-filter:none;-webkit-backdrop-filter:none;padding:36px 26px}
+    .about-hero{grid-template-columns:1fr;padding:14px 18px 30px;gap:14px}
+    .about-hero-media{min-height:0;height:300px;order:1}
+    .about-nav{order:2}
+    .about-nav{min-height:0;padding:32px 26px}
     .cw-foot-cols{grid-template-columns:repeat(2,1fr)!important}
   }
 </style>
@@ -147,7 +152,9 @@
 
 <main>
   <section class="about-hero">
-    <img class="about-hero-bg" src="assets/about-diver.jpg" alt="Snorkeler swimming near a reef">
+    <div class="about-hero-media">
+      <img class="about-hero-bg" src="assets/about-diver.jpg" alt="Snorkeler swimming near a reef">
+    </div>
     <div class="about-nav">
       <h1>About</h1>
       <ul>
@@ -156,6 +163,7 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#returns">Returns &amp; Exchanges</a></li>
       </ul>
+      <div class="about-hero-note">Brooklyn, NY · Built for the wake</div>
     </div>
   </section>
 

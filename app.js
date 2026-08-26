@@ -253,7 +253,17 @@ async function initStore() {
   try {
     const products = await fwGetProducts();
     if (!products.length) throw new Error('No products are available yet.');
-    fwState.product = fwNormalize(products[0]);
+    // Prefer the pinned product id; fall back to the first result so the page
+    // still works if the id is ever changed in the dashboard.
+    const pinned = FW.productId && products.find((p) => p.id === FW.productId);
+    if (FW.productId && !pinned) {
+      console.warn(
+        `[coldwake] Pinned product ${FW.productId} was not returned by the storefront ` +
+        `collection — falling back to "${products[0].name}". Publish the product in ` +
+        `Fourthwall and make sure it is in the storefront collection.`
+      );
+    }
+    fwState.product = fwNormalize(pinned || products[0]);
     renderVariantSelector(fwState.product);
     const p = minPrice(fwState.product);
     if (p != null && $('#cw-price')) $('#cw-price').textContent = fmtMoney(p, FW.currency);
