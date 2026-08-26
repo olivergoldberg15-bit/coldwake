@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Coldwake</title>
+<meta name="description" content="About Coldwake — heavyweight, ocean-inspired essentials made in small runs. Our story, contact info, FAQ, and returns.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.coldwake.com/about.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23030b21'/%3E%3Ctext x='12' y='17' font-family='Arial,sans-serif' font-weight='700' font-size='15' fill='%23f1ede4' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  /* ===== shared chrome — kept in sync with index.html by hand.
+     Pulled in here rather than a shared stylesheet so this page can't
+     break the working homepage; if this drifts from index.html's look,
+     that's the tradeoff. ===== */
+  *{box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{margin:0;background:#f7f3ea;color:#030b21;font-family:'Archivo',Helvetica,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
+  ::selection{background:#030b21;color:#f1ede4}
+  .cw-btn{cursor:pointer;transition:transform .12s ease,opacity .2s ease}
+  .cw-btn:hover{opacity:.9}
+  .cw-btn:active{transform:translateY(1px)}
+  a[href^="#"],.cw-clickable{cursor:pointer}
+  #cw-burger{display:none;background:none;border:0;color:inherit;cursor:pointer;padding:0}
+
+  /* overlay shared by drawer + mobile nav */
+  .cw-overlay{position:fixed;inset:0;background:rgba(3,11,33,.5);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;z-index:60}
+  .cw-overlay.is-open{opacity:1;visibility:visible}
+  /* cart drawer */
+  .cw-drawer{position:fixed;top:0;right:0;height:100%;width:min(430px,92vw);background:#f1ede4;color:#030b21;z-index:70;transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.1,1);display:flex;flex-direction:column;box-shadow:-24px 0 70px rgba(0,0,0,.28)}
+  .cw-drawer.is-open{transform:none}
+  .cw-drawer__head{display:flex;align-items:center;justify-content:space-between;padding:26px 26px 18px;border-bottom:1.5px solid #030b21}
+  .cw-drawer__head h3{font-family:'Anton',sans-serif;font-size:26px;text-transform:uppercase;margin:0;letter-spacing:.02em}
+  .cw-x{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:#030b21;padding:2px 6px}
+  .cw-items{flex:1;overflow-y:auto;padding:8px 26px}
+  .cw-empty{padding:60px 0;text-align:center;color:#6a6d72;font-size:14px}
+  .cw-drawer__foot{padding:20px 26px 26px;border-top:1.5px solid #030b21}
+  .cw-subtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:16px}
+  .cw-checkout{width:100%;background:#030b21;color:#f1ede4;border:0;padding:16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;cursor:pointer}
+  .cw-checkout[disabled]{opacity:.45;cursor:not-allowed}
+  /* mobile nav */
+  .cw-mnav{position:fixed;top:0;left:0;height:100%;width:min(320px,86vw);background:#030b21;color:#f1ede4;z-index:70;transform:translateX(-100%);transition:transform .34s cubic-bezier(.4,0,.1,1);display:flex;flex-direction:column;padding:24px;gap:2px}
+  .cw-mnav.is-open{transform:none}
+  .cw-mnav__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;font-family:'Anton',sans-serif;font-size:20px;letter-spacing:.1em}
+  .cw-mnav a{font-size:17px;font-weight:600;padding:13px 0;border-bottom:1px solid rgba(241,237,228,.14)}
+  .cw-mnav__sub{margin-top:18px;display:flex;flex-direction:column;gap:2px}
+  .cw-mnav__sub a{font-size:13px;letter-spacing:.14em;font-weight:600;border:0;padding:9px 0;color:#9fb0c4}
+  .cw-x--light{color:#f1ede4}
+  /* toast */
+  .cw-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#030b21;color:#f1ede4;padding:13px 24px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;z-index:90;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+  .cw-toast.is-show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* unlock-discount popup (same component as index.html) */
+  .cw-pop-ov{position:fixed;inset:0;background:rgba(3,11,33,.66);backdrop-filter:blur(3px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+  .cw-pop-ov.is-open{opacity:1;visibility:visible}
+  .cw-pop-card{position:relative;width:min(760px,100%);max-height:calc(100vh - 40px);background:#f1ede4;color:#030b21;box-shadow:0 30px 90px rgba(3,11,33,.5);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;transform:scale(.94) translateY(10px);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .cw-pop-ov.is-open .cw-pop-card{transform:scale(1) translateY(0)}
+  .cw-pop-x{position:absolute;top:16px;right:16px;z-index:3;width:34px;height:34px;border-radius:50%;background:#f1ede4;border:1.5px solid #030b21;font-size:18px;line-height:1;cursor:pointer;color:#030b21;display:flex;align-items:center;justify-content:center;opacity:.9}
+  .cw-pop-x:hover{opacity:1}
+  .cw-pop-side{position:relative;min-height:340px;background:#0a1d33}
+  .cw-pop-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .cw-pop-body{padding:44px 38px;display:flex;flex-direction:column;justify-content:center}
+  .cw-pop-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#6a6d72;margin:0 0 12px}
+  .cw-pop-h{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,38px);text-transform:uppercase;letter-spacing:.01em;line-height:1.02;margin:0 0 14px}
+  .cw-pop-sub{font-size:14px;line-height:1.55;color:#4a4d52;margin:0 0 26px;max-width:34ch}
+  .cw-pop-email{width:100%;box-sizing:border-box;border:1.5px solid #030b21;background:#fff;color:#030b21;font:inherit;font-size:14px;padding:14px 16px;margin:0 0 12px}
+  .cw-pop-email::placeholder{color:#8a8d92}
+  .cw-pop-go{width:100%;border:0;cursor:pointer;background:#030b21;color:#f1ede4;padding:16px 0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .cw-pop-go[disabled]{opacity:.5;cursor:not-allowed}
+  .cw-pop-skip{display:block;width:100%;background:none;border:0;color:#6a6d72;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;cursor:pointer;margin-top:14px;padding:6px;text-align:left}
+  .cw-pop-skip:hover{color:#030b21}
+  .cw-pop-result{display:none}
+  .cw-pop-result.is-active{display:block}
+  .cw-pop-form.is-hidden{display:none}
+  .cw-pop-code{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1.5px dashed #030b21;padding:14px 16px;margin:0 0 20px}
+  .cw-pop-code span{font-family:ui-monospace,Menlo,monospace;font-size:16px;font-weight:700;letter-spacing:.06em}
+  .cw-pop-code button{flex:none;background:#030b21;color:#f1ede4;border:0;padding:9px 14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;cursor:pointer}
+  @media(max-width:640px){
+    .cw-pop-card{grid-template-columns:1fr;max-width:420px}
+    .cw-pop-side{min-height:200px;order:-1}
+    .cw-pop-body{padding:34px 26px}
+  }
+
+  /* ===== about page ===== */
+  .cw-navbar{max-width:1520px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 32px}
+  #cw-nav-links{display:flex;gap:30px;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  .cw-hide-mobile{display:inline}
+  .cw-wordmark{font-family:'Anton',sans-serif;font-size:27px;letter-spacing:.14em;text-align:center;line-height:1;white-space:nowrap}
+
+  .about-hero{position:relative;min-height:70vh;overflow:hidden;background:#0a1d33}
+  .about-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .about-nav{position:relative;z-index:2;width:min(440px,48%);min-height:70vh;padding:56px clamp(28px,5vw,60px);background:rgba(247,243,234,.5);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15);display:flex;flex-direction:column}
+  .about-nav h1{font-family:'Anton',sans-serif;font-size:clamp(30px,4vw,44px);text-transform:uppercase;margin:0 0 36px;letter-spacing:.01em;color:#030b21}
+  .about-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:24px}
+  .about-nav a{display:block;font-size:17px;font-weight:600;color:#1c1e22;transition:opacity .15s ease}
+  .about-nav a:hover{opacity:.55}
+
+  .about-section{max-width:760px;margin:0 auto;padding:80px 32px;border-bottom:1px solid rgba(3,11,33,.14)}
+  .about-section:last-of-type{border-bottom:0}
+  .about-section .label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#6a6d72;margin:0 0 14px}
+  .about-section h2{font-family:'Anton',sans-serif;font-size:clamp(26px,3.4vw,38px);text-transform:uppercase;margin:0 0 22px;letter-spacing:.01em}
+  .about-section p{font-size:15.5px;line-height:1.75;color:#3a3d42;margin:0 0 16px;max-width:60ch}
+  .about-section p:last-child{margin-bottom:0}
+  .about-faq dt{font-weight:700;font-size:15.5px;margin:22px 0 6px}
+  .about-faq dt:first-child{margin-top:0}
+  .about-faq dd{margin:0;font-size:15px;line-height:1.7;color:#3a3d42}
+
+  @media(max-width:860px){
+    #cw-nav-links a.cw-hide-mobile,#cw-nav-links a:not(#cw-burger){display:none!important}
+    #cw-burger{display:inline-flex}
+    /* glass-over-photo doesn't read well this narrow — drop to a plain
+       solid panel below the photo instead of overlaying it */
+    .about-hero{display:flex;flex-direction:column;min-height:0}
+    .about-hero-bg{position:static;width:100%;height:280px;object-fit:cover}
+    .about-nav{position:static;width:100%;min-height:0;background:#f7f3ea;backdrop-filter:none;-webkit-backdrop-filter:none;padding:36px 26px}
+    .cw-foot-cols{grid-template-columns:repeat(2,1fr)!important}
+  }
+</style>
+</head>
+<body>
+
+<header style="border-bottom:1px solid rgba(3,11,33,.14)">
+  <div class="cw-navbar">
+    <nav id="cw-nav-links">
+      <button id="cw-burger" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+      <a href="index.html#shop" class="cw-hide-mobile">Shop</a>
+      <a href="index.html#collection" class="cw-hide-mobile">Collection</a>
+      <a href="index.html#origin" class="cw-hide-mobile">Origin</a>
+      <a href="index.html#journal" class="cw-hide-mobile">Journal</a>
+      <a href="about.html" class="cw-hide-mobile" style="text-decoration:underline;text-underline-offset:4px">About</a>
+    </nav>
+    <a href="index.html" class="cw-wordmark">COLDWAKE</a>
+    <div style="display:flex;gap:22px;justify-content:flex-end;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600">
+      <a href="#search" class="cw-soon cw-hide-mobile">Search</a>
+      <a href="#account" class="cw-soon cw-hide-mobile">Account</a>
+      <a href="index.html#cart" id="cw-cart-link" style="display:inline-flex;align-items:center;gap:6px">Cart <span id="cw-cart-count" style="display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;background:#030b21;color:#f1ede4;border-radius:9px;font-size:10px">0</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="about-hero">
+    <img class="about-hero-bg" src="assets/about-diver.jpg" alt="Snorkeler swimming near a reef">
+    <div class="about-nav">
+      <h1>About</h1>
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#returns">Returns &amp; Exchanges</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-section" id="story">
+    <div class="label">Our Story</div>
+    <h2>Made for the deep end.</h2>
+    <p>Coldwake is a study in pressure, movement, and calm below the surface. Built for the moments that pull you beyond the shoreline, with fewer pieces and a sharper point of view.</p>
+    <p>One tee, cut heavy and built to last. We start small and make it right — no noise, no filler, just the pieces we'd wear every day off the dock.</p>
+  </section>
+
+  <section class="about-section" id="contact">
+    <div class="label">Contact</div>
+    <h2>Get in touch</h2>
+    <p>Questions about an order, sizing, or anything else — email or call and you'll hear back from us directly.</p>
+    <p><a href="mailto:olivergoldberg15@gmail.com" style="text-decoration:underline">olivergoldberg15@gmail.com</a><br><a href="tel:+13473948991" style="text-decoration:underline">(347) 394-8991</a></p>
+  </section>
+
+  <section class="about-section" id="faq">
+    <div class="label">FAQ</div>
+    <h2>Common questions</h2>
+    <dl class="about-faq">
+      <dt>What's the Anchor Tee made of?</dt>
+      <dd>240gsm combed cotton, pre-shrunk and garment-dyed, with an embroidered navy anchor over the heart and double-needle hems.</dd>
+      <dt>What sizes do you carry?</dt>
+      <dd>S through XXL.</dd>
+      <dt>Do you ship internationally?</dt>
+      <dd>Right now we ship within the United States. Orders over $75 ship free.</dd>
+      <dt>How do I contact support?</dt>
+      <dd>Email <a href="mailto:olivergoldberg15@gmail.com" style="text-decoration:underline">olivergoldberg15@gmail.com</a> or call <a href="tel:+13473948991" style="text-decoration:underline">(347) 394-8991</a> — a real person reads and answers these.</dd>
+    </dl>
+  </section>
+
+  <section class="about-section" id="returns">
+    <div class="label">Returns &amp; Exchanges</div>
+    <h2>Returns</h2>
+    <p>We're still finalizing our formal returns policy. If something isn't right with your order, email us — we'll sort it out directly, case by case.</p>
+  </section>
+</main>
+
+<footer id="footer" style="background:#030b21;color:#9fb0c4">
+  <div style="max-width:1440px;margin:0 auto;padding:78px 32px 6px;text-align:center">
+    <div aria-label="Coldwake" style="display:inline-block;font-family:'Anton',sans-serif;font-size:clamp(64px,15vw,232px);letter-spacing:.05em;line-height:.8;text-transform:uppercase;color:#f1ede4;-webkit-text-stroke:2px #f1ede4;transform:scaleY(1.2);transform-origin:center bottom;padding-right:.05em">COLDWAKE</div>
+  </div>
+  <div class="cw-foot-cols" style="max-width:1240px;margin:0 auto;padding:54px 32px 46px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px">
+    <div>
+      <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 20px">Service</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:14px">
+        <li><a href="#returns">Refund policy</a></li>
+        <li><a href="#returns">Returns</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 20px">Company</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:14px">
+        <li><a href="#story">About</a></li>
+        <li><a href="index.html#journal">Blog</a></li>
+        <li><a href="#contact">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 20px">Customer support</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:14px">
+        <li><a href="mailto:olivergoldberg15@gmail.com">Email us</a></li>
+        <li><a href="tel:+13473948991">(347) 394-8991</a></li>
+        <li style="display:flex;align-items:center;gap:7px"><span style="width:15px;height:15px;border:1px solid currentColor;border-radius:50%;display:inline-block"></span>United States</li>
+      </ul>
+    </div>
+    <div id="newsletter">
+      <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 12px">Join our newsletter</h4>
+      <p style="font-size:13px;line-height:1.6;margin:0 0 18px;color:#c3cfdd;font-family:ui-monospace,Menlo,monospace">Stay updated with our latest news and offers.</p>
+      <form id="cw-news" style="display:flex;align-items:center;background:#f1ede4;border-radius:6px;padding:5px 5px 5px 16px;max-width:320px">
+        <input id="cw-email" type="email" required placeholder="Email" style="flex:1;min-width:0;border:0;background:transparent;outline:none;font-family:inherit;font-size:14px;color:#030b21;padding:9px 0">
+        <button type="submit" aria-label="Subscribe" style="flex:none;width:36px;height:36px;border:0;border-radius:5px;background:#030b21;color:#f1ede4;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">→</button>
+      </form>
+      <p id="cw-news-status" style="font-size:12px;color:#7f92a8;margin:14px 0 0"></p>
+    </div>
+  </div>
+  <div style="background:#000114">
+    <div style="max-width:1240px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;letter-spacing:.03em">
+      <span style="color:#6d8098;margin:0 auto">© 2026 Coldwake</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cw-overlay" id="cw-overlay"></div>
+
+<aside class="cw-mnav" id="cw-mnav" aria-hidden="true">
+  <div class="cw-mnav__top">
+    <span>COLDWAKE</span>
+    <button class="cw-x cw-x--light" id="cw-mnav-close" aria-label="Close menu">×</button>
+  </div>
+  <a href="index.html#shop">Shop</a>
+  <a href="index.html#collection">Collection</a>
+  <a href="index.html#origin">Origin</a>
+  <a href="index.html#journal">Journal</a>
+  <a href="about.html">About</a>
+  <div class="cw-mnav__sub">
+    <a href="#search" class="cw-soon">Search</a>
+    <a href="#account" class="cw-soon">Account</a>
+    <a href="index.html#cart" id="cw-mnav-cart">Cart</a>
+  </div>
+</aside>
+
+<aside class="cw-drawer" id="cw-drawer" aria-hidden="true">
+  <div class="cw-drawer__head">
+    <h3>Cart</h3>
+    <button class="cw-x" id="cw-drawer-close" aria-label="Close cart">×</button>
+  </div>
+  <div class="cw-items" id="cw-items"><div class="cw-empty">Your cart is empty.<br><a href="index.html#shop" style="text-decoration:underline">Shop the Anchor Tee →</a></div></div>
+  <div class="cw-drawer__foot">
+    <div class="cw-subtotal"><span>Subtotal</span><span id="cw-subtotal">$0</span></div>
+    <button class="cw-checkout" id="cw-checkout" disabled>Checkout</button>
+  </div>
+</aside>
+
+<div class="cw-toast" id="cw-toast"></div>
+
+<!-- UNLOCK-DISCOUNT POPUP — same component as index.html -->
+<div class="cw-pop-ov" id="cw-pop-ov" aria-hidden="true">
+  <div class="cw-pop-card" role="dialog" aria-modal="true" aria-label="Unlock a discount">
+    <button class="cw-pop-x" id="cw-pop-close" aria-label="Close">&times;</button>
+    <div class="cw-pop-side">
+      <img src="assets/popup-diver.jpg" alt="Swimmer below the surface">
+    </div>
+    <div class="cw-pop-body">
+      <form class="cw-pop-form" id="cw-pop-form">
+        <div class="cw-pop-eyebrow">Before you go</div>
+        <h3 class="cw-pop-h" id="cw-pop-pct">Unlock 10% off<br>your first order</h3>
+        <p class="cw-pop-sub">Save on your first order and get email-only offers when you join.</p>
+        <input class="cw-pop-email" id="cw-pop-email" type="email" required placeholder="Email">
+        <button type="submit" class="cw-pop-go" id="cw-pop-go">Continue</button>
+        <button type="button" class="cw-pop-skip" id="cw-pop-skip">No thanks</button>
+      </form>
+      <div class="cw-pop-result" id="cw-pop-result">
+        <div class="cw-pop-eyebrow">You're in</div>
+        <h3 class="cw-pop-h">Here's your code</h3>
+        <p class="cw-pop-sub">Enter this at Fourthwall checkout.</p>
+        <div class="cw-pop-code">
+          <span id="cw-pop-code-text">&mdash;</span>
+          <button type="button" id="cw-pop-copy">Copy</button>
+        </div>
+        <button type="button" class="cw-pop-go" id="cw-pop-shop">Shop now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+/* Minimal chrome JS for this static page — mobile nav / cart drawer toggle,
+ * toast, newsletter no-op, and the unlock-discount popup. Deliberately not
+ * loading the full app.js here since this page has no Fourthwall product to
+ * fetch; that avoids a pointless failed /api/fw call on every About visit. */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+let toastTimer;
+function toast(msg) {
+  const el = $('#cw-toast');
+  el.textContent = msg;
+  el.classList.add('is-show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('is-show'), 2600);
+}
+function closePanels() {
+  $('#cw-mnav').classList.remove('is-open');
+  $('#cw-drawer').classList.remove('is-open');
+  $('#cw-overlay').classList.remove('is-open');
+}
+$('#cw-burger').addEventListener('click', () => {
+  $('#cw-mnav').classList.add('is-open');
+  $('#cw-overlay').classList.add('is-open');
+});
+$('#cw-mnav-close').addEventListener('click', closePanels);
+$('#cw-cart-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  $('#cw-drawer').classList.add('is-open');
+  $('#cw-overlay').classList.add('is-open');
+});
+$('#cw-drawer-close').addEventListener('click', closePanels);
+$('#cw-overlay').addEventListener('click', closePanels);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanels(); });
+$$('.cw-soon').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); toast('Coming soon'); }));
+$('#cw-news').addEventListener('submit', (e) => {
+  e.preventDefault();
+  $('#cw-email').value = '';
+  $('#cw-news-status').textContent = 'Thanks — you’re on the list.';
+  toast('You’re on the list');
+});
+
+const COLDWAKE = { apiBase: '', endpoints: { subscribe: '/subscribe' } };
+async function apiPost(path, body) {
+  if (!COLDWAKE.apiBase) return { ok: false, offline: true };
+  try {
+    const res = await fetch(COLDWAKE.apiBase + path, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    });
+    return { ok: res.ok, data: await res.json().catch(() => null) };
+  } catch (err) { return { ok: false, error: err }; }
+}
+
+const POPUP_STORAGE_KEY = 'cw_popup_v1';
+const POPUP_SHOW_DELAY_MS = 1800;
+function initPopup() {
+  const cfg = window.COLDWAKE_POPUP;
+  if (!cfg || cfg.enabled === false || !cfg.code) return;
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(POPUP_STORAGE_KEY) || 'null'); } catch (e) { saved = null; }
+  if (saved && saved.seen) return;
+
+  const ov = $('#cw-pop-ov');
+  const form = $('#cw-pop-form');
+  const emailInput = $('#cw-pop-email');
+  const goBtn = $('#cw-pop-go');
+  const skipBtn = $('#cw-pop-skip');
+  const closeBtn = $('#cw-pop-close');
+  const shopBtn = $('#cw-pop-shop');
+  const copyBtn = $('#cw-pop-copy');
+  const pctEl = $('#cw-pop-pct');
+  const result = $('#cw-pop-result');
+  const codeEl = $('#cw-pop-code-text');
+  if (!ov || !form) return;
+
+  if (pctEl) pctEl.innerHTML = `Unlock ${cfg.pct}% off<br>your first order`;
+
+  function open() { ov.classList.add('is-open'); ov.setAttribute('aria-hidden', 'false'); }
+  function close() { ov.classList.remove('is-open'); ov.setAttribute('aria-hidden', 'true'); }
+  function markSeen(extra) {
+    try { localStorage.setItem(POPUP_STORAGE_KEY, JSON.stringify({ seen: true, ...extra })); } catch (e) {}
+  }
+
+  let unlocked = false;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (unlocked) return;
+    const email = emailInput.value.trim();
+    if (!email) return;
+    goBtn.disabled = true;
+    await apiPost(COLDWAKE.endpoints.subscribe, { email }).catch(() => {});
+    unlocked = true;
+    codeEl.textContent = cfg.code;
+    form.classList.add('is-hidden');
+    result.classList.add('is-active');
+    markSeen({ code: cfg.code, email });
+  });
+  copyBtn.addEventListener('click', () => {
+    const code = codeEl.textContent.trim();
+    if (navigator.clipboard && code && code !== '—') {
+      navigator.clipboard.writeText(code).then(() => toast('Code copied')).catch(() => toast(code));
+    } else { toast(code); }
+  });
+  shopBtn.addEventListener('click', () => {
+    const code = codeEl.textContent.trim();
+    if (navigator.clipboard && code && code !== '—') navigator.clipboard.writeText(code).catch(() => {});
+    close();
+    window.location.href = 'index.html#feature';
+  });
+  skipBtn.addEventListener('click', () => { markSeen({}); close(); });
+  closeBtn.addEventListener('click', () => { if (!unlocked) markSeen({}); close(); });
+  ov.addEventListener('click', (e) => { if (e.target === ov) { if (!unlocked) markSeen({}); close(); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && ov.classList.contains('is-open')) { if (!unlocked) markSeen({}); close(); } });
+  setTimeout(open, POPUP_SHOW_DELAY_MS);
+}
+document.addEventListener('DOMContentLoaded', initPopup);
+</script>
+</body>
+</html>

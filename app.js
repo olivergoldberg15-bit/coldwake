@@ -334,6 +334,32 @@ document.addEventListener('DOMContentLoaded', () => {
     a.addEventListener('click', closePanels);
   });
 
+  // about dropdown (frosted panel under the nav — not the dark cw-overlay,
+  // it has its own scrim so hero content behind it can't bleed through)
+  const aboutToggle = $('#cw-about-toggle');
+  const aboutDd = $('#cw-about-dd');
+  const aboutScrim = $('#cw-about-scrim');
+  if (aboutToggle && aboutDd && aboutScrim) {
+    const closeAboutDd = () => {
+      aboutDd.classList.remove('is-open');
+      aboutDd.setAttribute('aria-hidden', 'true');
+      aboutScrim.classList.remove('is-open');
+    };
+    const openAboutDd = () => {
+      aboutDd.classList.add('is-open');
+      aboutDd.setAttribute('aria-hidden', 'false');
+      aboutScrim.classList.add('is-open');
+    };
+    aboutToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (aboutDd.classList.contains('is-open')) closeAboutDd();
+      else openAboutDd();
+    });
+    $('#cw-about-dd-close').addEventListener('click', closeAboutDd);
+    aboutScrim.addEventListener('click', closeAboutDd);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAboutDd(); });
+  }
+
   // overlay + escape
   overlay().addEventListener('click', closePanels);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanels(); });
@@ -352,3 +378,92 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('You’re on the list');
   });
 });
+
+/* ---------- unlock-discount popup ----------
+ * Deliberately kept independent of the Fourthwall bootstrap above: this
+ * has nothing to do with live product data, and must still work even if
+ * that fetch fails. Config (pct + code) lives in config.js as
+ * window.COLDWAKE_POPUP — see the comment there for how to wire a real
+ * Fourthwall discount code to it. Also submits the email through the same
+ * (currently no-op until apiBase is set) newsletter hook used by the
+ * footer signup form. */
+const POPUP_STORAGE_KEY = 'cw_popup_v1';
+const POPUP_SHOW_DELAY_MS = 1800;
+
+function initPopup() {
+  const cfg = window.COLDWAKE_POPUP;
+  if (!cfg || cfg.enabled === false || !cfg.code) return;
+
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(POPUP_STORAGE_KEY) || 'null'); } catch (e) { saved = null; }
+  if (saved && saved.seen) return; // already shown this browser — don't nag repeat visitors
+
+  const ov = $('#cw-pop-ov');
+  const form = $('#cw-pop-form');
+  const emailInput = $('#cw-pop-email');
+  const goBtn = $('#cw-pop-go');
+  const skipBtn = $('#cw-pop-skip');
+  const closeBtn = $('#cw-pop-close');
+  const shopBtn = $('#cw-pop-shop');
+  const copyBtn = $('#cw-pop-copy');
+  const pctEl = $('#cw-pop-pct');
+  const result = $('#cw-pop-result');
+  const codeEl = $('#cw-pop-code-text');
+  if (!ov || !form) return;
+
+  if (pctEl) pctEl.innerHTML = `Unlock ${cfg.pct}% off<br>your first order`;
+
+  function open() {
+    ov.classList.add('is-open');
+    ov.setAttribute('aria-hidden', 'false');
+  }
+  function close() {
+    ov.classList.remove('is-open');
+    ov.setAttribute('aria-hidden', 'true');
+  }
+  function markSeen(extra) {
+    try { localStorage.setItem(POPUP_STORAGE_KEY, JSON.stringify({ seen: true, ...extra })); } catch (e) { /* private mode etc — non-fatal */ }
+  }
+
+  let unlocked = false;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (unlocked) return;
+    const email = emailInput.value.trim();
+    if (!email) return;
+    goBtn.disabled = true;
+    await apiPost(COLDWAKE.endpoints.subscribe, { email }).catch(() => {});
+    unlocked = true;
+    codeEl.textContent = cfg.code;
+    form.classList.add('is-hidden');
+    result.classList.add('is-active');
+    markSeen({ code: cfg.code, email });
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const code = codeEl.textContent.trim();
+    if (navigator.clipboard && code && code !== '—') {
+      navigator.clipboard.writeText(code).then(() => toast('Code copied')).catch(() => toast(code));
+    } else {
+      toast(code);
+    }
+  });
+
+  shopBtn.addEventListener('click', () => {
+    const code = codeEl.textContent.trim();
+    if (navigator.clipboard && code && code !== '—') navigator.clipboard.writeText(code).catch(() => {});
+    close();
+    document.getElementById('feature')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // note: once unlocked, the submit handler has already persisted {seen, code, email} —
+  // these just need to close the modal without clobbering that.
+  skipBtn.addEventListener('click', () => { markSeen({}); close(); });
+  closeBtn.addEventListener('click', () => { if (!unlocked) markSeen({}); close(); });
+  ov.addEventListener('click', (e) => { if (e.target === ov) { if (!unlocked) markSeen({}); close(); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && ov.classList.contains('is-open')) { if (!unlocked) markSeen({}); close(); } });
+
+  setTimeout(open, POPUP_SHOW_DELAY_MS);
+}
+document.addEventListener('DOMContentLoaded', initPopup);
