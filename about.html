@@ -86,23 +86,47 @@
     .cw-pop-body{padding:34px 26px}
   }
 
-  /* ===== about page ===== */
-  .cw-navbar{max-width:1520px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 32px}
-  #cw-nav-links{display:flex;gap:30px;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-  .cw-hide-mobile{display:inline}
-  .cw-wordmark{font-family:'Anton',sans-serif;font-size:27px;letter-spacing:.14em;text-align:center;line-height:1;white-space:nowrap}
+  /* ===== about page — laid out to match the reference: ticker strip,
+     floating rounded nav bar, then a frosted panel beside a rounded photo. ===== */
 
-  /* hero: two rounded panels side by side inside a gutter, matching the
-     reference layout — glass nav card left, full-bleed photo right */
-  .about-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;max-width:1520px;margin:0 auto;padding:18px 32px 40px;align-items:stretch}
-  .about-hero-media{order:2;position:relative;border-radius:20px;overflow:hidden;background:#0a1d33;min-height:min(72vh,660px)}
+  /* announcement ticker */
+  .ds-ticker{position:relative;z-index:3;display:flex;align-items:center;overflow:hidden;height:30px;font-size:11.5px;font-weight:500;color:#030b21;background:transparent}
+  .ds-ticker__track{display:flex;gap:56px;white-space:nowrap;padding-left:56px;animation:ds-slide 46s linear infinite;flex:none}
+  @keyframes ds-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ds-country{position:absolute;right:24px;top:0;height:30px;display:inline-flex;align-items:center;gap:7px;padding-left:26px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;background:linear-gradient(90deg,rgba(247,243,234,0),#f7f3ea 22px)}
+  @media(prefers-reduced-motion:reduce){.ds-ticker__track{animation:none}}
+
+  /* floating nav bar */
+  .cw-navbar{position:relative;z-index:3;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;
+             margin:0 20px;padding:16px 28px;border-radius:18px;
+             background:rgba(255,255,255,.74);border:1px solid rgba(3,11,33,.07);
+             backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);
+             box-shadow:0 10px 34px rgba(3,11,33,.07)}
+  .cw-wordmark{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:.14em;line-height:1;white-space:nowrap;justify-self:start}
+  #cw-nav-links{display:flex;gap:34px;align-items:center;justify-content:center;font-size:15px;font-weight:600}
+  #cw-nav-links a.is-here{opacity:.5}
+  .cw-hide-mobile{display:inline}
+  .cw-icons{display:flex;gap:22px;align-items:center;justify-self:end;color:#030b21}
+  .cw-icons a{display:inline-flex;align-items:center;position:relative}
+  .cw-icons svg{display:block}
+  #cw-cart-count{position:absolute;top:-6px;right:-9px;display:inline-flex;align-items:center;justify-content:center;
+                 min-width:16px;height:16px;padding:0 4px;background:#030b21;color:#f1ede4;border-radius:9px;font-size:9.5px;font-weight:700}
+
+  /* hero: frosted panel beside a rounded photo, sitting over the page ground */
+  .about-hero{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 20px 0;align-items:stretch}
+  .about-nav{position:relative;border-radius:18px;overflow:hidden;padding:clamp(30px,3.2vw,44px) clamp(28px,3.2vw,44px);
+             background:rgba(255,255,255,.70);border:1px solid rgba(3,11,33,.06);box-shadow:0 10px 34px rgba(3,11,33,.06);
+             backdrop-filter:blur(26px) saturate(1.25);-webkit-backdrop-filter:blur(26px) saturate(1.25);
+             display:flex;flex-direction:column;min-height:min(66vh,560px)}
+  .about-nav h1{font-family:'Anton',sans-serif;font-size:clamp(28px,3vw,38px);text-transform:uppercase;margin:0 0 40px;letter-spacing:.02em;color:#030b21}
+  .about-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+  .about-nav li+li{margin-top:44px}
+  .about-nav a{display:block;font-size:clamp(18px,1.55vw,22px);font-weight:600;color:#1c1e22;transition:opacity .15s ease}
+  .about-nav a:hover{opacity:.55}
+  .about-hero-note{margin-top:auto;align-self:flex-end;display:inline-flex;align-items:center;gap:8px;padding-top:34px;
+                   font-size:15px;font-weight:600;color:#1c1e22}
+  .about-hero-media{position:relative;border-radius:18px;overflow:hidden;background:#0a1d33;min-height:min(66vh,560px)}
   .about-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
-  .about-nav{order:1;border-radius:20px;padding:clamp(34px,4vw,58px) clamp(28px,4vw,54px);background:rgba(3,11,33,.055);border:1px solid rgba(3,11,33,.10);backdrop-filter:blur(22px) saturate(1.15);-webkit-backdrop-filter:blur(22px) saturate(1.15);display:flex;flex-direction:column;min-height:min(72vh,660px)}
-  .about-nav h1{font-family:'Anton',sans-serif;font-size:clamp(30px,3.4vw,42px);text-transform:uppercase;margin:0 0 34px;letter-spacing:.01em;color:#030b21}
-  .about-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:26px}
-  .about-nav a{display:block;font-size:clamp(17px,1.5vw,21px);font-weight:600;color:#1c1e22;transition:opacity .15s ease,transform .15s ease}
-  .about-nav a:hover{opacity:.55;transform:translateX(3px)}
-  .about-hero-note{margin-top:auto;padding-top:34px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#6a6d72}
 
   .about-section{max-width:760px;margin:0 auto;padding:80px 32px;border-bottom:1px solid rgba(3,11,33,.14)}
   .about-section:last-of-type{border-bottom:0}
@@ -119,18 +143,28 @@
     #cw-burger{display:inline-flex}
     /* glass-over-photo doesn't read well this narrow — drop to a plain
        solid panel below the photo instead of overlaying it */
-    .about-hero{grid-template-columns:1fr;padding:14px 18px 30px;gap:14px}
-    .about-hero-media{min-height:0;height:300px;order:1}
-    .about-nav{order:2}
-    .about-nav{min-height:0;padding:32px 26px}
+    .cw-navbar{grid-template-columns:auto 1fr;margin:0 12px;padding:13px 18px}
+    .ds-country{display:none}
+    .cw-icons{gap:18px}
+    .about-hero{grid-template-columns:1fr;margin:12px 12px 0;gap:12px}
+    .about-hero-media{min-height:0;height:280px;order:1}
+    .about-nav{order:2;min-height:0;padding:30px 24px}
+    .about-nav h1{margin-bottom:28px}
+    .about-nav li+li{margin-top:30px}
     .cw-foot-cols{grid-template-columns:repeat(2,1fr)!important}
   }
 </style>
 </head>
 <body>
 
-<header style="border-bottom:1px solid rgba(3,11,33,.14)">
+<div class="ds-ticker" aria-hidden="true">
+  <div class="ds-ticker__track"><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span><span>Free U.S. shipping on all orders over $75</span><span>New — The Anchor Tee</span><span>Built for the wake</span></div>
+  <a href="#region" class="ds-country cw-soon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>United States</a>
+</div>
+
+<header>
   <div class="cw-navbar">
+    <a href="index.html" class="cw-wordmark">COLDWAKE</a>
     <nav id="cw-nav-links">
       <button id="cw-burger" aria-label="Open menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -139,31 +173,30 @@
       <a href="index.html#collection" class="cw-hide-mobile">Collection</a>
       <a href="index.html#origin" class="cw-hide-mobile">Origin</a>
       <a href="index.html#journal" class="cw-hide-mobile">Journal</a>
-      <a href="about.html" class="cw-hide-mobile" style="text-decoration:underline;text-underline-offset:4px">About</a>
+      <a href="about.html" class="cw-hide-mobile is-here" aria-current="page">About</a>
     </nav>
-    <a href="index.html" class="cw-wordmark">COLDWAKE</a>
-    <div style="display:flex;gap:22px;justify-content:flex-end;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600">
-      <a href="#search" class="cw-soon cw-hide-mobile">Search</a>
-      <a href="#account" class="cw-soon cw-hide-mobile">Account</a>
-      <a href="index.html#cart" id="cw-cart-link" style="display:inline-flex;align-items:center;gap:6px">Cart <span id="cw-cart-count" style="display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;background:#030b21;color:#f1ede4;border-radius:9px;font-size:10px">0</span></a>
+    <div class="cw-icons">
+      <a href="#search" class="cw-soon cw-hide-mobile" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round"/></svg></a>
+      <a href="#account" class="cw-soon cw-hide-mobile" aria-label="Account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke-linecap="round"/></svg></a>
+      <a href="index.html#cart" id="cw-cart-link" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 8h12l-1.2 12H7.2z" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" stroke-linecap="round"/></svg><span id="cw-cart-count">0</span></a>
     </div>
   </div>
 </header>
 
 <main>
   <section class="about-hero">
-    <div class="about-hero-media">
-      <img class="about-hero-bg" src="assets/about-diver.jpg" alt="Snorkeler swimming near a reef">
-    </div>
     <div class="about-nav">
       <h1>About</h1>
       <ul>
         <li><a href="#story">Our Story</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#faq">FAQ</a></li>
         <li><a href="#returns">Returns &amp; Exchanges</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="about-hero-note">Brooklyn, NY · Built for the wake</div>
+      <a href="#region" class="about-hero-note cw-soon">United States <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></a>
+    </div>
+    <div class="about-hero-media">
+      <img class="about-hero-bg" src="assets/about-diver.jpg" alt="Snorkeler swimming above a reef">
     </div>
   </section>
 
