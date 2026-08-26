@@ -167,6 +167,39 @@
     .cw-pop-side{min-height:200px;order:-1}
     .cw-pop-body{padding:34px 26px}
   }
+
+  /* About — full-screen popup (not a page nav), sharp square corners,
+     heavy frosted glass panel beside a plain uncropped-corner photo. */
+  .cw-about-ov{position:fixed;inset:0;background:rgba(3,11,33,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:120;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+  .cw-about-ov.is-open{opacity:1;visibility:visible}
+  .cw-about-modal{position:relative;width:90vw;height:90vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:0 40px 120px rgba(3,11,33,.5);transform:scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  .cw-about-ov.is-open .cw-about-modal{transform:scale(1)}
+  .cw-about-modal__panel{position:relative;padding:clamp(36px,4vw,64px);background:rgba(247,243,234,.55);border-right:1px solid rgba(255,255,255,.25);backdrop-filter:blur(34px) saturate(1.3);-webkit-backdrop-filter:blur(34px) saturate(1.3);display:flex;flex-direction:column;overflow-y:auto}
+  .cw-about-modal__close{position:absolute;top:22px;left:22px;z-index:2;width:34px;height:34px;border-radius:50%;background:#fff;border:1.5px solid #030b21;color:#030b21;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+  .cw-about-modal__panel h1{font-family:'Anton',sans-serif;font-size:clamp(28px,3vw,40px);text-transform:uppercase;margin:56px 0 40px;letter-spacing:.02em;color:#030b21}
+  .cw-about-modal__panel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+  .cw-about-modal__panel li+li{margin-top:36px}
+  .cw-about-modal__panel a{display:block;font-size:clamp(17px,1.4vw,20px);font-weight:600;color:#1c1e22;transition:opacity .15s ease}
+  .cw-about-modal__panel a:hover{opacity:.55}
+  .cw-about-modal__note{margin-top:auto;align-self:flex-end;padding-top:30px;font-size:14px;font-weight:600;color:#1c1e22;display:inline-flex;align-items:center;gap:8px}
+  .cw-about-modal__photo{position:relative;background:#0a1d33}
+  .cw-about-modal__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+  .cw-about-modal__body{margin-top:44px;display:flex;flex-direction:column;gap:52px}
+  .cw-about-modal__body section{scroll-margin-top:20px}
+  .cw-about-modal__label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#6a6d72;margin:0 0 12px}
+  .cw-about-modal__body h2{font-family:'Anton',sans-serif;font-size:clamp(22px,2.4vw,28px);text-transform:uppercase;margin:0 0 16px;letter-spacing:.01em;color:#030b21}
+  .cw-about-modal__body p{font-size:14.5px;line-height:1.7;color:#3a3d42;margin:0 0 14px;max-width:56ch}
+  .cw-about-modal__body p:last-child{margin-bottom:0}
+  .cw-about-modal__body a{text-decoration:underline;text-underline-offset:3px}
+  .cw-about-modal__faq dt{font-weight:700;font-size:14.5px;margin:18px 0 6px}
+  .cw-about-modal__faq dt:first-child{margin-top:0}
+  .cw-about-modal__faq dd{margin:0;font-size:14px;line-height:1.65;color:#3a3d42}
+  @media(max-width:860px){
+    .cw-about-modal{width:94vw;height:92vh;grid-template-columns:1fr;overflow-y:auto}
+    .cw-about-modal__photo{order:-1;height:34vh}
+    .cw-about-modal__panel{padding:28px 24px}
+    .cw-about-modal__panel h1{margin-top:44px}
+  }
   /* ===== responsive ===== */
   @media(max-width:900px){
     header nav#cw-nav-links>a,header nav#cw-nav-links>button:not(#cw-burger){display:none!important}
@@ -304,7 +337,7 @@
             <a href="#collection" style="color:#f1ede4">Collection</a>
             <a href="#origin" style="color:#f1ede4">Origin</a>
             <a href="#journal" style="color:#f1ede4">Journal</a>
-            <a href="about.html" style="color:#f1ede4">About</a>
+            <button type="button" id="cw-about-open" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#f1ede4">About</button>
           </nav>
           <a href="#top" class="cw-wordmark" style="font-family:'Anton',sans-serif;font-size:27px;letter-spacing:.14em;text-align:center;line-height:1;white-space:nowrap;color:#f1ede4">COLDWAKE</a>
           <div style="display:flex;gap:22px;justify-content:flex-end;align-items:center;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600">
@@ -504,17 +537,17 @@
       <div>
         <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 20px">Service</h4>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:14px">
-          <li><a href="about.html#returns">Refund policy</a></li>
-          <li><a href="about.html#returns">Returns</a></li>
-          <li><a href="about.html#faq">FAQs</a></li>
+          <li><a href="about.html#returns" class="cw-about-link">Refund policy</a></li>
+          <li><a href="about.html#returns" class="cw-about-link">Returns</a></li>
+          <li><a href="about.html#faq" class="cw-about-link">FAQs</a></li>
         </ul>
       </div>
       <div>
         <h4 style="font-size:15px;font-weight:700;color:#f1ede4;margin:0 0 20px">Company</h4>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;font-size:14px">
-          <li><a href="about.html">About</a></li>
+          <li><a href="about.html" class="cw-about-link">About</a></li>
           <li><a href="#journal">Blog</a></li>
-          <li><a href="about.html#contact">Support</a></li>
+          <li><a href="about.html#contact" class="cw-about-link">Support</a></li>
         </ul>
       </div>
       <div>
@@ -564,7 +597,7 @@
   <a href="#collection">Collection</a>
   <a href="#origin">Origin</a>
   <a href="#journal">Journal</a>
-  <a href="about.html">About</a>
+  <a href="about.html" class="cw-about-link">About</a>
   <div class="cw-mnav__sub">
     <a href="#search" class="cw-soon">Search</a>
     <a href="#account" class="cw-soon">Account</a>
@@ -590,6 +623,63 @@
 
 <!-- UNLOCK-DISCOUNT POPUP — first-visit email capture. Code comes from
      config.js (window.COLDWAKE_POPUP). Shown once per browser (localStorage). -->
+<div class="cw-about-ov" id="cw-about-ov" aria-hidden="true">
+  <div class="cw-about-modal" role="dialog" aria-modal="true" aria-label="About Coldwake">
+    <div class="cw-about-modal__panel" id="cw-about-modal-panel">
+      <button class="cw-about-modal__close" id="cw-about-modal-close" aria-label="Close">&times;</button>
+      <h1>About</h1>
+      <ul>
+        <li><a href="#cw-about-story" class="cw-about-jump">Our Story</a></li>
+        <li><a href="#cw-about-returns" class="cw-about-jump">Returns &amp; Exchanges</a></li>
+        <li><a href="#cw-about-faq" class="cw-about-jump">FAQ</a></li>
+        <li><a href="#cw-about-contact" class="cw-about-jump">Contact</a></li>
+      </ul>
+
+      <div class="cw-about-modal__body">
+        <section id="cw-about-story">
+          <div class="cw-about-modal__label">Our Story</div>
+          <h2>Made for the deep end.</h2>
+          <p>Coldwake is a study in pressure, movement, and calm below the surface. Built for the moments that pull you beyond the shoreline, with fewer pieces and a sharper point of view.</p>
+          <p>One tee, cut heavy and built to last. We start small and make it right — no noise, no filler, just the pieces we'd wear every day off the dock.</p>
+        </section>
+
+        <section id="cw-about-returns">
+          <div class="cw-about-modal__label">Returns &amp; Exchanges</div>
+          <h2>Returns</h2>
+          <p>We're still finalizing our formal returns policy. If something isn't right with your order, email us — we'll sort it out directly, case by case.</p>
+        </section>
+
+        <section id="cw-about-faq">
+          <div class="cw-about-modal__label">FAQ</div>
+          <h2>Common questions</h2>
+          <dl class="cw-about-modal__faq">
+            <dt>What's the Anchor Tee made of?</dt>
+            <dd>240gsm combed cotton, pre-shrunk and garment-dyed, with an embroidered navy anchor over the heart and double-needle hems.</dd>
+            <dt>What sizes do you carry?</dt>
+            <dd>S through XXL.</dd>
+            <dt>Do you ship internationally?</dt>
+            <dd>Right now we ship within the United States. Orders over $75 ship free.</dd>
+            <dt>How do I contact support?</dt>
+            <dd>Email <a href="mailto:olivergoldberg15@gmail.com">olivergoldberg15@gmail.com</a> or call <a href="tel:+13473948991">(347) 394-8991</a> — a real person reads and answers these.</dd>
+          </dl>
+        </section>
+
+        <section id="cw-about-contact">
+          <div class="cw-about-modal__label">Contact</div>
+          <h2>Get in touch</h2>
+          <p>Questions about an order, sizing, or anything else — email or call and you'll hear back from us directly.</p>
+          <p><a href="mailto:olivergoldberg15@gmail.com">olivergoldberg15@gmail.com</a><br><a href="tel:+13473948991">(347) 394-8991</a></p>
+        </section>
+      </div>
+
+      <div class="cw-about-modal__note">United States <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div>
+    </div>
+    <div class="cw-about-modal__photo">
+      <img src="assets/about-diver.jpg" alt="Snorkeler swimming above a reef">
+    </div>
+  </div>
+</div>
+
 <div class="cw-pop-ov" id="cw-pop-ov" aria-hidden="true">
   <div class="cw-pop-card" role="dialog" aria-modal="true" aria-label="Unlock a discount">
     <button class="cw-pop-x" id="cw-pop-close" aria-label="Close">&times;</button>

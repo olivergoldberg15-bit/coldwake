@@ -344,6 +344,42 @@ document.addEventListener('DOMContentLoaded', () => {
     a.addEventListener('click', closePanels);
   });
 
+  // About — full-screen popup, opened from the nav and any "about.html" link
+  const aboutOv = $('#cw-about-ov');
+  if (aboutOv) {
+    const openAbout = () => {
+      aboutOv.classList.add('is-open');
+      aboutOv.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeAbout = () => {
+      aboutOv.classList.remove('is-open');
+      aboutOv.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    const aboutOpenBtn = $('#cw-about-open');
+    if (aboutOpenBtn) aboutOpenBtn.addEventListener('click', openAbout);
+    $$('.cw-about-link').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      openAbout();
+      const hash = a.getAttribute('href').split('#')[1];
+      if (hash) {
+        const target = document.getElementById(`cw-about-${hash}`);
+        if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      } else {
+        $('#cw-about-modal-panel').scrollTo({ top: 0 });
+      }
+    }));
+    $('#cw-about-modal-close').addEventListener('click', closeAbout);
+    aboutOv.addEventListener('click', (e) => { if (e.target === aboutOv) closeAbout(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && aboutOv.classList.contains('is-open')) closeAbout(); });
+    $$('.cw-about-jump').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+  }
+
   // overlay + escape
   overlay().addEventListener('click', closePanels);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanels(); });
